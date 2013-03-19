@@ -19,6 +19,7 @@ upload result through rsync every 30min.
 * rsyncd
  * example
 
+
         ~/tmp/starperf-log$ cat /etc/rsyncd.conf
         motd file = /etc/rsyncd.motd
         log file = /var/log/rsyncd.log
