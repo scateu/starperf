@@ -59,7 +59,6 @@ StarTest(){
             test_ping $urls
         done < /tmp/ping.list
 }
-current_date=`TZ="Asia/Shanghai" date +%Y-%m-%d-%H.%M.%S`
 
 myip() {
     echo >&2 "Getting your public IPv4 address"
@@ -75,7 +74,19 @@ myip() {
 
 ip=`myip`
 
-mkdir /tmp/starperf/
-rm /tmp/starperf/*
-StarTest > /tmp/starperf/$current_date'_'$ip.result
-rsync /tmp/starperf/$current_date'_'$ip.result  $RSYNC_SERVER
+
+main(){
+        mkdir /tmp/starperf/
+        rm /tmp/starperf/*
+        current_date=`TZ="Asia/Shanghai" date +%Y-%m-%d-%H.%M.%S`
+        StarTest > /tmp/starperf/$current_date'_'$ip.result
+        rsync /tmp/starperf/$current_date'_'$ip.result  $RSYNC_SERVER
+}
+
+while true
+do
+    main
+    echo `date` sleeping.. for 1800 secs
+    sleep 1800
+done
+
