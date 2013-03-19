@@ -1,6 +1,7 @@
 IPERF_LIST=http://laser.k.ramlab.net/iperf.list
 PING_LIST=http://laser.k.ramlab.net/ping.list
 LOADTIME_LIST=http://laser.k.ramlab.net/loadtime.list
+RSYNC_SERVER=rsync://laser.k.ramlab.net/starperf/
 
 fetch_iperf_list()
 {
@@ -30,7 +31,7 @@ test_ping()
 {
     echo pinging $1 >&2
     result=`ping $1 -c 4 |tail -n 1 | cut -d'=' -f2 |cut -d'/' -f2`
-    echo ping,$1,$result
+    echo ping,$1,$result'ms'
 }
 test_loadtime()
 {
@@ -74,4 +75,7 @@ myip() {
 
 ip=`myip`
 
-StarTest > $current_date_$ip.result
+mkdir /tmp/starperf/
+rm /tmp/starperf/*
+StarTest > /tmp/starperf/$current_date'_'$ip.result
+rsync /tmp/starperf/$current_date'_'$ip.result  $RSYNC_SERVER
