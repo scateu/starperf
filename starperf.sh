@@ -31,12 +31,12 @@ test_ping()
 {
     echo pinging $1 >&2
     result=`ping $1 -c 4 |tail -n 1 | cut -d'=' -f2 |cut -d'/' -f2`
-    echo ping,$1,$result'ms'
+    echo ping,$1,$result' ms'
 }
 test_loadtime()
 {
     echo loading $1 >&2
-    result=`(time wget $1 -O /dev/null -q) 2>&1 | grep real |cut -f2 | cut -dm -f2`
+    result=`(time wget $1 -O /dev/null -q) 2>&1 | grep real |cut -f2 | cut -dm -f2 |sed 's/s$/ s/'`
     echo loadtime,$1,$result
 }
 
@@ -89,4 +89,3 @@ do
     echo `date` sleeping.. for 1800 secs
     sleep 1800
 done
-
