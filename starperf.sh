@@ -1,7 +1,7 @@
 IPERF_LIST=http://laser.k.ramlab.net/iperf.list
 PING_LIST=http://laser.k.ramlab.net/ping.list
 LOADTIME_LIST=http://laser.k.ramlab.net/loadtime.list
-RSYNC_SERVER=rsync://laser.k.ramlab.net/starperf/
+RSYNC_SERVER=rsync://laser.k.ramlab.net/starperf
 
 fetch_iperf_list()
 {
@@ -80,7 +80,7 @@ main(){
         rm /tmp/starperf/*
         current_date=`TZ="Asia/Shanghai" date +%Y-%m-%d-%H.%M.%S`
         StarTest > /tmp/starperf/$current_date'_'$ip.result
-        rsync /tmp/starperf/$current_date'_'$ip.result  $RSYNC_SERVER
+        rsync /tmp/starperf/$current_date'_'$ip.result  $RSYNC_SERVER/$ip/
 }
 
 while true
