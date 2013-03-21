@@ -104,10 +104,7 @@ def touch_rrd(item):
                                 "RRA:MAX:0.5:24:775",
                                 )
             #then update it
-            try:
-                rrdtool.update(rrd_filename,"%d:%s"%(item['time'],result[1]))
-            except:
-                pass
+            rrdtool.update(rrd_filename,"%d:%s"%(item['time'],result[1]))
 
 def graph_rrd():
     for dirName,subdirList,fileList in os.walk('.'):
