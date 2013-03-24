@@ -1,0 +1,67 @@
+<html>
+<head>
+                <meta charset="utf-8">
+                <link rel="stylesheet" href="{{ url_for('static',filename="bootstrap-responsive.css") }}">
+                <link href="{{ url_for('static',filename="bootstrap.min.css") }}" rel="stylesheet" media="screen">
+</head>
+
+<body>
+        <div class="container">
+            <div class="masthead">
+                <h4 class="muted">THUNET performace monitor</h4>
+                <div class="navbar">
+                  <div class="navbar-inner">
+                    <div class="container">
+                      <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">每小时</a></li>
+                        <li><a href="#">每天</a></li>
+                        <li><a href="#">每周</a></li>
+                        <li><a href="#">每月</a></li>
+                        <li><a href="#">每年</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div><!-- /.navbar -->
+              </div>
+
+    <div class="tabbable tabs-right">
+            <!--<ul class="nav nav-tabs">-->
+                <!--<li class="active"><a data-toogle="tab" href="#59.66.84.66"> 59.66.84.66 </a></li>-->
+                <!--<li> <a data-toogle="tab" href="#202.112.3.171">202.112.3.171 </a></li>-->
+            <!--</ul>-->
+            <div class="tab-content">
+                <div id='{{ host }}' class="tab-pane active">
+                        
+                        <h3>来源 {{ host }} </h3>
+
+                        {% for result in results %}
+                        <h4> {{ result.title }} </h4>
+                        <p> to {{ result.destination }}  </p>
+                        <img src="{{ url_for('getImage',host=host,path=result.image) }}">
+                        {% else %}
+                        <h4>无数据</h4>
+                        {% endfor %}
+
+                        <!--<h4>来源 {{ host }} </h4>-->
+                        <!--<h4> 吞吐量(MB/s) </h4>-->
+                        <!--<p> to 166.111.111.91  </p>-->
+                        <!--<img src="{{ url_for('getImage',host=host,path="throughput_166.111.111.91.rrd-daily.png") }}">-->
+
+                        <!--<h4> Web页面载入时间 (s)</h4>-->
+                        <!--<p> to www.10086.cn </p>-->
+                        <!--<img src="{{ url_for('getImage',host=host,path="loadtime_www.10086.cn.rrd-daily.png") }}">-->
+                        <!--<p> to www.youku.com </p>-->
+                        <!--<img src="{{ url_for('getImage',host=host,path="loadtime_www.youku.com.rrd-daily.png") }}">-->
+                        <!--<h4> ping时延 (ms) </h4>-->
+                        <!--<p> to 8.8.8.8 </p>-->
+                        <!--<img src="{{ url_for('getImage',host=host,path="ping_8.8.8.8.rrd-daily.png") }}">-->
+                </div>
+    </div>
+    </div>
+
+        </div>
+</body>
+
+
+</html>
