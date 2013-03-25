@@ -2,6 +2,7 @@ IPERF_LIST=http://laser.k.ramlab.net/iperf.list
 PING_LIST=http://laser.k.ramlab.net/ping.list
 LOADTIME_LIST=http://laser.k.ramlab.net/loadtime.list
 RSYNC_SERVER=rsync://laser.k.ramlab.net/starperf
+TIMEOUT=20
 
 fetch_iperf_list()
 {
@@ -23,20 +24,20 @@ fetch_loadtime_list()
 test_iperf()
 {
     echo iperfing $1 >&2
-    result=`iperf -c laser.k.ramlab.net -f M -t 1 -x CMSV  |tail -n 1| cut -d's' -f3 |sed "s/MByte/MB\/s/" |sed "s/^  //"`
+    result=`timeout $TIMEOUT iperf -c laser.k.ramlab.net -f M -t 1 -x CMSV  |tail -n 1| cut -d's' -f3 |sed "s/MByte/MB\/s/" |sed "s/^  //"`
     echo throughput,$1,$result
 }
 
 test_ping()
 {
     echo pinging $1 >&2
-    result=`ping $1 -c 4 |tail -n 1 | cut -d'=' -f2 |cut -d'/' -f2`
+    result=`timeout $TIMEOUT ping $1 -c 4 |tail -n 1 | cut -d'=' -f2 |cut -d'/' -f2`
     echo ping,$1,$result' ms'
 }
 test_loadtime()
 {
     echo loading $1 >&2
-    result=`(time wget $1 -O /dev/null -q) 2>&1 | grep real |cut -f2 | cut -dm -f2 |sed 's/s$/ s/'`
+    result=`(time timeout $TIMEOUT wget $1 -O /dev/null -q) 2>&1 | grep real |cut -f2 | cut -dm -f2 |sed 's/s$/ s/'`
     echo loadtime,$1,$result
 }
 

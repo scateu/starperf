@@ -5,8 +5,10 @@ A simple network performance test tool.
 upload result through rsync every 30min.
 
 ## Client
+require 
 
-
+* coreutils-timeout
+* iperf
 
 
 ## Server

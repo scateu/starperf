@@ -44,7 +44,9 @@ def getImage(host,path):
     if path.startswith('..') or path.startswith('/') or not path.endswith('.png'):
         abort(404)
     filename='./%s/%s'%(host,path)
-    return send_file(filename)
+    resp = send_file(filename)
+    #resp.cache_control.no_cache = True
+    return resp
 
 if __name__ == "__main__":
-    app.run('0.0.0.0')
+    app.run('0.0.0.0',9324)

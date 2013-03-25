@@ -113,15 +113,16 @@ def graph_rrd():
                 print 'graphing'
                 for sched in ['hourly','daily' , 'weekly', 'monthly']:
                     if sched == 'weekly':
-                        period = 'w'
+                        period = '1w'
                     elif sched == 'daily':
-                        period = 'd'
+                        period = '3d'
                     elif sched == 'monthly':
-                        period = 'm'
+                        period = '1m'
                     elif sched == 'hourly':
-                        period = 'h'
+                        period = '1h'
                     os.chdir(dirName)
-                    ret = rrdtool.graph("%s-%s.png" %(fname,sched), "--start", "-1%s" %(period), "--vertical-label=Num",
+                    ret = rrdtool.graph("%s-%s.png" %(fname,sched), "--start", "-%s" %(period), "--vertical-label=Num",
+                         "--slope-mode",
                          "-w 800",
                          "DEF:m1_num=%s:result:AVERAGE"%fname,
                          "LINE1:m1_num#0000FF:result\\r",
