@@ -19,9 +19,6 @@
                                 {% else %}
                                 <li> <a href="{{ h }}">{{ h }}</a></li>
                                 {% endif %}
-                        <!--<li><a href="#">每小时</a></li>-->
-                        <!--<li><a href="#">每天</a></li>-->
-                        <!--<li><a href="#">每周</a></li>-->
                         {% endfor %}
                       </ul>
                     </div>
@@ -30,10 +27,6 @@
               </div>
 
     <div class="tabbable tabs-right">
-            <!--<ul class="nav nav-tabs">-->
-                <!--<li class="active"><a data-toogle="tab" href="#59.66.84.66"> 59.66.84.66 </a></li>-->
-                <!--<li> <a data-toogle="tab" href="#202.112.3.171">202.112.3.171 </a></li>-->
-            <!--</ul>-->
             <div class="tab-content">
                 <div id='{{ host }}' class="tab-pane active">
                         
@@ -46,20 +39,6 @@
                         {% else %}
                         <h4>无数据</h4>
                         {% endfor %}
-
-                        <!--<h4>来源 {{ host }} </h4>-->
-                        <!--<h4> 吞吐量(MB/s) </h4>-->
-                        <!--<p> to 166.111.111.91  </p>-->
-                        <!--<img src="{{ url_for('getImage',host=host,path="throughput_166.111.111.91.rrd-daily.png") }}">-->
-
-                        <!--<h4> Web页面载入时间 (s)</h4>-->
-                        <!--<p> to www.10086.cn </p>-->
-                        <!--<img src="{{ url_for('getImage',host=host,path="loadtime_www.10086.cn.rrd-daily.png") }}">-->
-                        <!--<p> to www.youku.com </p>-->
-                        <!--<img src="{{ url_for('getImage',host=host,path="loadtime_www.youku.com.rrd-daily.png") }}">-->
-                        <!--<h4> ping时延 (ms) </h4>-->
-                        <!--<p> to 8.8.8.8 </p>-->
-                        <!--<img src="{{ url_for('getImage',host=host,path="ping_8.8.8.8.rrd-daily.png") }}">-->
                 </div>
     </div>
     </div>
