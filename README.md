@@ -21,7 +21,6 @@ require
 * rsyncd
  * example
 
-
         ~/tmp/starperf-log$ cat /etc/rsyncd.conf
         motd file = /etc/rsyncd.motd
         log file = /var/log/rsyncd.log
@@ -34,4 +33,12 @@ require
         uid = scateu
         gid = scateu
         read only = no
+
+* parse\_data.py
+
+       while true;do python parse_data.py ;sleep 200;done
+
+* flask http server on 9324 port
+
+       python index.py
 
