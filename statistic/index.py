@@ -4,6 +4,7 @@ import re
 import os
 app = Flask(__name__)
 app.debug = True
+hosts=['59.66.84.66','59.66.206.54','202.112.3.171']
 
 def isIP(address):
     try:
@@ -16,7 +17,7 @@ def isIP(address):
 
 @app.route('/')
 @app.route('/<host>')
-def show_result(host='59.66.84.66'):
+def show_result(host=hosts[0]):
     results = []
 
     toTitle = {'throughput':u'吞吐量(MB/s)',
@@ -35,7 +36,7 @@ def show_result(host='59.66.84.66'):
                 _title = toTitle[_type]
                 results.append(dict(title=_title,destination=_dest,image=fname))
     results.sort()
-    return render_template('result.html', host=host,results=results)
+    return render_template('result.html', host=host,hosts=hosts,results=results)
 
 @app.route("/images/<host>/<path>")
 def getImage(host,path):

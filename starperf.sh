@@ -24,7 +24,7 @@ fetch_loadtime_list()
 test_iperf()
 {
     echo iperfing $1 >&2
-    result=`timeout $TIMEOUT iperf -c laser.k.ramlab.net -f M -t 1 -x CMSV  |tail -n 1| cut -d's' -f3 |sed "s/MByte/MB\/s/" |sed "s/^  //"`
+    result=`timeout $TIMEOUT iperf -c $1 -f M -t 10 -x CMSV  |tail -n 1| cut -d's' -f3 |sed "s/MByte/MB\/s/" |sed "s/^  //"`
     echo throughput,$1,$result
 }
 

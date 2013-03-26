@@ -13,12 +13,16 @@
                   <div class="navbar-inner">
                     <div class="container">
                       <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">每小时</a></li>
-                        <li><a href="#">每天</a></li>
-                        <li><a href="#">每周</a></li>
-                        <li><a href="#">每月</a></li>
-                        <li><a href="#">每年</a></li>
+                        {% for h in hosts%}
+                                {% if h == host %}
+                                <li class="active"> <a href="{{ h }}">{{ h }}</a></li>
+                                {% else %}
+                                <li> <a href="{{ h }}">{{ h }}</a></li>
+                                {% endif %}
+                        <!--<li><a href="#">每小时</a></li>-->
+                        <!--<li><a href="#">每天</a></li>-->
+                        <!--<li><a href="#">每周</a></li>-->
+                        {% endfor %}
                       </ul>
                     </div>
                   </div>
