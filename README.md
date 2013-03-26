@@ -26,6 +26,7 @@ needs to provide lists, fetched by clients every time
   * iperf.list
   * loadtime.list 
   * ping.list
+
 ### rsyncd server
 clients upload result through rsyncd
 
