@@ -9,17 +9,27 @@ require
 
 * coreutils-timeout
 * iperf
+* wget
+* rsync
+
+available on openwrt.
 
 
 ## Server
 
-* iperf -s
-* http server 
+### iPerf server
+iperf -s
+
+### HTTP server 
+needs to provide lists, fetched by clients every time
+
   * iperf.list
   * loadtime.list 
   * ping.list
-* rsyncd
- * example
+### rsyncd server
+clients upload result through rsyncd
+
+example:
 
         ~/tmp/starperf-log$ cat /etc/rsyncd.conf
         motd file = /etc/rsyncd.motd
@@ -34,11 +44,16 @@ require
         gid = scateu
         read only = no
 
-* parse\_data.py
+### RRD Parsing
+parse data collected from rsyncd into rrddata, and draw it into png
 
+       cd statistics
        while true;do python parse_data.py ;sleep 200;done
 
-* flask http server on 9324 port
 
+### result http server
+a simple flask http server on 9324 port
+
+       cd statistics
        python index.py
 
